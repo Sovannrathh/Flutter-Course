@@ -13,9 +13,15 @@ class Roof {
 }
 
 // Class Window
+class Floor {
+  String floor1;
+  Floor(this.floor1);
+
+}
+
 class Window {
   String window1, window2, window3, window4;
-  Window(this.window1, this.window2, this.window3, this.window4);
+  Window(this.window1, this.window2, requested= this.window3, this.window4);
 }
 
 // Class Chimey
@@ -47,14 +53,12 @@ class House {
   setChimney(Chimney newChimney) {
     chimney = newChimney;
   }
-
-  void displayDetail() {}
 }
 
 void main() {
   Chimney customChimney = Chimney('brick');
   print('Chimney:${customChimney.brick}');
-  Window customwindow = Window('green','green','red','green');
+  Window customwindow = Window('green', 'green', 'red', 'green');
   Door customdoor = Door('center');
   Roof customRoof = Roof('Circle');
   print('Window: $customwindow Door:$customdoor, Roof:$customRoof');
