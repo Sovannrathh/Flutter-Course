@@ -1,0 +1,53 @@
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: MyHomePage(),
+//     );
+//   }
+// }
+
+// class MyHomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("My Hobbies"),
+//         backgroundColor: Colors.white30,
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(40.0),
+//         child:
+//             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+//           Container(
+//             color: Colors.green,
+//             height: 100,
+//             child: Center(
+//               child: ElevatedButton(
+//                 onPressed: () {},
+//                 child: Row(
+//                   children: [
+//                     const Text("Traveller"),
+//                     Padding(
+//                       child: Icon(
+//                         Icons.travel_explore_rounded,
+//                         color: Colors.grey,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ]),
+//       ),
+//     );
+//   }
+// }

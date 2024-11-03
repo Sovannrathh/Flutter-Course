@@ -1,0 +1,93 @@
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       color: Colors.blue,
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: const Text("Product"),
+//         ),
+//         body: Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Column(
+//             children:
+//                 Product.values.map((product) => ProductCard(product)).toList(),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// enum Product {
+//   dart(
+//     title: "Dart",
+//     imagePath: 'assets/images/dart.png',
+//     description: "The best object language",
+//   ),
+//   flutter(
+//     title: "flutter",
+//     imagePath: 'assets/images/flutter.png',
+//     description: "the best mobile widget library",
+//   ),
+//   firebase(
+//     title: "Firebase",
+//     imagePath: 'assets/images/firebase.png',
+//     description: "the best cloud database",
+//   );
+
+//   final String title;
+//   final String imagePath;
+//   final String description;
+
+//   const Product({
+//     required this.title,
+//     required this.imagePath,
+//     required this.description,
+//   });
+// }
+
+// class ProductCard extends StatelessWidget {
+//   final Product product;
+//   const ProductCard(this.product);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       elevation: 3,
+//       margin: const EdgeInsets.all(4),
+//       child: Padding(
+//         padding: EdgeInsets.all(4),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Image.asset(product.imagePath, height: 100, fit: BoxFit.cover),
+//             const SizedBox(height: 10),
+//             Text(
+//               product.title,
+//               style: const TextStyle(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//             const SizedBox(height: 8),
+//             Text(
+//               product.description,
+//               style: const TextStyle(
+//                 fontSize: 16, 
+//                 color: Colors.black54
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
