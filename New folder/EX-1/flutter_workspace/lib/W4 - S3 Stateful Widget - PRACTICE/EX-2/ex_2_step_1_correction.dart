@@ -1,49 +1,80 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text("Favorite cards"),
-        ),
-        body: Column(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: .5, color: Colors.grey),
-                ),
-              ),
-              padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Expanded(
-                    flex: 7,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'title',
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w800),
-                        ),
-                        SizedBox(height: 10.0),
-                        Text('description')
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () => {},
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ))
-                ],
-              ),
-            )
-          ],
+        appBar: AppBar(title: const Text("Interactive Card Layout")),
+        body: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: CustomCard(),
         ),
       ),
-    ));
+    );
+  }
+}
+
+class CustomCard extends StatefulWidget {
+  const CustomCard({super.key});
+
+  @override
+  _CustomCardState createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  bool isFavorite = false;
+
+  void toggleFavorite() {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: const Border(
+          bottom: BorderSide(color: Colors.grey, width: 1), // Bottom border
+        ),
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Card Title",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  "This card shows an example layout with a favorite button and expanded text content.",
+                  style: TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: toggleFavorite,
+            icon: Icon(
+              Icons.favorite,
+              color: isFavorite ? Colors.red : Colors.grey,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

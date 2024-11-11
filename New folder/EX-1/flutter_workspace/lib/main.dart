@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-enum ButtonType { primary, sencondary, disabled }
-
-enum IconPosition { left, right }
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,98 +8,72 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Custom Button"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomButton(
-              label: "Submit",
-              icon: Icons.check,
-              buttonType: ButtonType.primary,
-            ),
-            const SizedBox(height: 16),
-            CustomButton(
-              label: "Time",
-              icon: Icons.access_time,
-              buttonType: ButtonType.sencondary,
-              iconPosition: IconPosition.right,
-            ),
-            const SizedBox(height: 16),
-            CustomButton(
-              label: "Account",
-              icon: Icons.account_tree_outlined,
-              buttonType: ButtonType.disabled,
-            ),
-          ],
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Interactive Card Layout")),
+        body: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: CustomCard(),
         ),
       ),
     );
   }
 }
 
-class CustomButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final ButtonType buttonType;
-  final IconPosition iconPosition;
+class CustomCard extends StatefulWidget {
+  const CustomCard({super.key});
 
-  const CustomButton({
-    super.key,
-    required this.label,
-    required this.icon,
-    this.buttonType = ButtonType.primary,
-    this.iconPosition = IconPosition.left,
-  });
+  @override
+  _CustomCardState createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  bool isFavorite = false;
+
+  void toggleFavorite() {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    Color buttonColor;
-    switch (buttonType) {
-      case ButtonType.primary:
-        buttonColor = Colors.blue;
-        break;
-      case ButtonType.sencondary:
-        buttonColor = Colors.green;
-      case ButtonType.disabled:
-      default:
-        buttonColor = Colors.grey;
-    }
-    return ElevatedButton(
-      onPressed: buttonType == ButtonType.disabled ? null : () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: buttonColor,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    return Container(
+      decoration: BoxDecoration(
+        border: const Border(
+          bottom: BorderSide(color: Colors.grey, width: 1), // Bottom border
+        ),
       ),
+      padding: const EdgeInsets.all(16.0),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: iconPosition == IconPosition.left
-            ? [
-                Icon(icon, color: Colors.white),
-                const SizedBox(width: 8),
-                Text(
-                  label,
-                  style: const TextStyle(color: Colors.white),
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Card Title",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ]
-            : [
-                Text(label, style: const TextStyle(color: Colors.white)),
-                const SizedBox(width: 8),
-                Icon(icon, color: Colors.white),
+                const SizedBox(height: 8),
+                const Text(
+                  "This card shows an example layout with a favorite button and expanded text content.",
+                  style: TextStyle(fontSize: 16, color: Colors.black87),
+                ),
               ],
+            ),
+          ),
+          IconButton(
+            onPressed: toggleFavorite,
+            icon: Icon(
+              Icons.favorite,
+              color: isFavorite ? Colors.red : Colors.grey,
+            ),
+          ),
+        ],
       ),
     );
   }
