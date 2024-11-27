@@ -1,15 +1,15 @@
-import 'quiz.dart'; // To reference the Question class
+import 'quiz.dart'; 
 
 class Answer {
-  final Question question;    // Reference to the associated Question
-  String questionAnswer;      // User's selected answer
+  final Question question;    
+  String questionAnswer;      
 
   Answer({
     required this.question,
     required this.questionAnswer,
   });
 
-  /// Checks if the answer is correct
+ 
   bool isCorrect() {
     return question.goodAnswer == questionAnswer; // Compare with the correct answer
   }
