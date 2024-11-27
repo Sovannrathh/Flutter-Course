@@ -1,7 +1,7 @@
 class Question {
-  final String title;                 // Question text
-  final List<String> possibleAnswers; // List of possible answers
-  final String goodAnswer;            // Correct answer
+  final String title;                
+  final List<String> possibleAnswers; 
+  final String goodAnswer;            
 
   Question({
     required this.title,
@@ -11,8 +11,8 @@ class Question {
 }
 
 class Quiz {
-  final String title;                // Title of the quiz
-  final List<Question> questions;    // List of questions in the quiz
+  final String title;                
+  final List<Question> questions;    
 
   Quiz({
     required this.title,
