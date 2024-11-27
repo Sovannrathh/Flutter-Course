@@ -22,7 +22,6 @@ class ResultScreen extends StatelessWidget {
             Text('You scored: ${submission.getScore()}/${quiz.questions.length}'),
             ElevatedButton(
               onPressed: () {
-                // Optionally, you can add an option to restart the quiz here
               },
               child: Text('Retry'),
             ),
