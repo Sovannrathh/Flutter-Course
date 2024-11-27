@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'model/quiz.dart'; // Import your quiz model
-import 'model/submission.dart'; // Import submission model
-import 'screens/welcome_screen.dart'; // Import the Welcome Screen
-import 'screens/question_screen.dart'; // Import the Question Screen
-import 'screens/result_screen.dart'; // Import the Result Screen
+import 'model/quiz.dart'; 
+import 'model/submission.dart'; 
+import 'screens/welcome_screen.dart'; 
+import 'screens/question_screen.dart'; 
+import 'screens/result_screen.dart'; 
 enum QuizState {
   notStarted,
   started,
@@ -19,14 +19,13 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  QuizState quizState = QuizState.notStarted; // Initial state: Quiz not started
+  QuizState quizState = QuizState.notStarted; 
   late Quiz quiz;
   late Submission submission;
 
   @override
   void initState() {
     super.initState();
-    // Initialize quiz and submission objects here
     quiz = Quiz(
       title: "Flutter Quiz",
       questions: [
@@ -47,7 +46,6 @@ class _QuizAppState extends State<QuizApp> {
 
   @override
   Widget build(BuildContext context) {
-    // Based on the current quiz state, show the corresponding screen
     switch (quizState) {
       case QuizState.notStarted:
         return WelcomeScreen(
@@ -68,14 +66,13 @@ class _QuizAppState extends State<QuizApp> {
     }
   }
 
-  // Start the quiz
+
   void _startQuiz() {
     setState(() {
       quizState = QuizState.started;
     });
   }
 
-  // Submit an answer to a question
   void _submitAnswer(Question question, String answer) {
     setState(() {
       submission.addAnswer(question, answer);
