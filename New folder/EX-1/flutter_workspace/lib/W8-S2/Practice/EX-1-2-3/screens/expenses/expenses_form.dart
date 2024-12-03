@@ -14,8 +14,7 @@ class ExpenseForm extends StatefulWidget {
 class _ExpenseFormState extends State<ExpenseForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
-
-  String get title => _titleController.text;
+  Category _selectedCategory = Category.food; 
 
   @override
   void dispose() {
@@ -25,22 +24,29 @@ class _ExpenseFormState extends State<ExpenseForm> {
   }
 
   void onCancel() {
-    
-    // Close modal
-    Navigator.pop(context);
+    Navigator.pop(context); // Close modal
   }
 
   void onAdd() {
     // 1- Get the values from inputs
     String title = _titleController.text;
-    double amount = double.parse(_valueController.text);
+    double amount = double.tryParse(_valueController.text) ?? 0;
+
+    if (title.isEmpty || amount <= 0) {
+      // Show an error message if inputs are invalid
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please provide valid inputs!")),
+      );
+      return;
+    }
 
     // 2- Create the expense
     Expense expense = Expense(
-        title: title,
-        amount: amount,
-        date: DateTime.now(),     //  TODO :  For now it s a fake data
-        category: Category.food); //  TODO :  For now it s a fake data
+      title: title,
+      amount: amount,
+      date: DateTime.now(), // Fake data for now
+      category: _selectedCategory,
+    );
 
     // 3- Ask the parent to add the expense
     widget.onCreated(expense);
@@ -75,16 +81,37 @@ class _ExpenseFormState extends State<ExpenseForm> {
               label: Text('Amount'),
             ),
           ),
+          DropdownButtonFormField<Category>(
+            value: _selectedCategory,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 5,
+            decoration: const InputDecoration(
+              labelText: 'Category',
+              border: OutlineInputBorder(),
+            ),
+            style: const TextStyle(color: Colors.deepPurple),
+            onChanged: (Category? newValue) {
+              setState(() {
+                _selectedCategory = newValue!;
+              });
+            },
+            items: Category.values.map((Category category) {
+              return DropdownMenuItem<Category>(
+                value: category,
+                child: Text(category.name), // Display category name
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 10), // Add some spacing
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              
               ElevatedButton(onPressed: onCancel, child: const Text('Cancel')),
-              const SizedBox(
-                width: 20,
-              ),
+              const SizedBox(width: 20),
               ElevatedButton(onPressed: onAdd, child: const Text('Create')),
             ],
-          )
+          ),
         ],
       ),
     );
