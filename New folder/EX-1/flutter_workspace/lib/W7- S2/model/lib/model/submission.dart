@@ -1,57 +1,57 @@
-import 'quiz.dart'; 
+// import 'quiz.dart'; 
 
-class Answer {
-  final Question question;    
-  String questionAnswer;      
+// class Answer {
+//   final Question question;    
+//   String questionAnswer;      
 
-  Answer({
-    required this.question,
-    required this.questionAnswer,
-  });
-
- 
-  bool isCorrect() {
-    return question.goodAnswer == questionAnswer; // Compare with the correct answer
-  }
-}
-
-class Submission {
-  final List<Answer> answers = [];
+//   Answer({
+//     required this.question,
+//     required this.questionAnswer,
+//   });
 
  
-  void addAnswer(Question question, String answerText) {
+//   bool isCorrect() {
+//     return question.goodAnswer == questionAnswer; // Compare with the correct answer
+//   }
+// }
+
+// class Submission {
+//   final List<Answer> answers = [];
+
+ 
+//   void addAnswer(Question question, String answerText) {
    
-    Answer? existingAnswer = getAnswerFor(question);
+//     Answer? existingAnswer = getAnswerFor(question);
 
-    if (existingAnswer != null) {
+//     if (existingAnswer != null) {
      
-      existingAnswer.questionAnswer = answerText;
-    } else {
+//       existingAnswer.questionAnswer = answerText;
+//     } else {
       
-      answers.add(Answer(question: question, questionAnswer: answerText));
-    }
-  }
+//       answers.add(Answer(question: question, questionAnswer: answerText));
+//     }
+//   }
 
  
-  Answer? getAnswerFor(Question question) {
-    return answers.firstWhere(
-      (answer) => answer.question == question, 
-      orElse: () => null
-    );
-  }
+//   Answer? getAnswerFor(Question question) {
+//     return answers.firstWhere(
+//       (answer) => answer.question == question, 
+//       orElse: () => null
+//     );
+//   }
 
-  int getScore() {
-    int score = 0;
-    for (var answer in answers) {
-      if (answer.isCorrect()) {
-        score++; 
-      }
-    }
-    return score;
-  }
+//   int getScore() {
+//     int score = 0;
+//     for (var answer in answers) {
+//       if (answer.isCorrect()) {
+//         score++; 
+//       }
+//     }
+//     return score;
+//   }
 
 
-  void removeAnswers() {
-    answers.clear(); 
-  }
-}
+//   void removeAnswers() {
+//     answers.clear(); 
+//   }
+// }
